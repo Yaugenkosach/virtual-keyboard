@@ -37,3 +37,17 @@ function createKeys() {
 }
 
 createKeys();
+
+// create description
+
+let descriptionText = document.createElement('p');
+descriptionText.classList.add('description');
+descriptionText.innerHTML = 'Клавиатура создана в операционной системе Windows';
+document.querySelector('body').appendChild(descriptionText);
+
+// create language
+
+let languageText = document.createElement('p');
+languageText.classList.add('language');
+languageText.innerHTML = 'Для переключения языка комбинация: левыe ctrl + shift';
+document.querySelector('body').appendChild(languageText);

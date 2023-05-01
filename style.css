@@ -10,7 +10,6 @@ body {
 
 .keyboard-title {
     color: rgb(233, 128, 7);
-    text-align: center;
 }
 
 .text-area {
@@ -95,4 +94,11 @@ body {
 .MetaLeft {
     font-weight: 600;
     background-color: #222222;
+}
+
+.description,
+.language,
+.keyboard-title {
+    margin: 10px auto;
+    text-align: center;
 }
