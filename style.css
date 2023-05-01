@@ -22,3 +22,77 @@ body {
     font-size: 18px;
     color: #444444;
 }
+
+.keyboard {
+    width: 704px;
+    margin: 0 auto;
+    padding: 5px;
+    padding-left: 0;
+    padding-bottom: 0;
+    background: rgb(233, 128, 7);
+    border: 3px solid #222222;
+    border-radius: 5px;
+}
+
+.key {
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin: 3px;
+    font-weight: 500;
+    line-height: 40px;
+    text-align: center;
+    color: #ffffff;
+    background: #444444;
+    border-radius: 3px;
+    cursor: pointer;
+    user-select: none;
+    transition: border-radius 0.3s, background-color 0.3s;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.Backspace,
+.CapsLock,
+.ShiftLeft {
+    width: 100px;
+}
+
+.Tab {
+    width: 50px;
+}
+
+.Delete {
+    width: 44px;
+}
+
+.Enter,
+.ShiftRight {
+    width: 86px;
+}
+
+.Space {
+    width: 330px;
+}
+
+.AltLeft,
+.AltRight,
+.ArrowUp,
+.ArrowLeft,
+.ArrowDown,
+.ArrowRight,
+.Backspace,
+.CapsLock,
+.ControlLeft,
+.ControlRight,
+.Delete,
+.Enter,
+.ShiftLeft,
+.ShiftRight,
+.Tab,
+.MetaLeft {
+    font-weight: 600;
+    background-color: #222222;
+}
