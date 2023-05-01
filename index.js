@@ -1,0 +1,135 @@
+// create keyboard title
+
+let keyboardTitle = document.createElement('h1');
+keyboardTitle.innerHTML = 'RSS Виртуальная клавиатура';
+keyboardTitle.classList.add('keyboard-title');
+document.querySelector('body').appendChild(keyboardTitle);
+
+// create textarea
+
+let textArea = document.createElement('textarea');
+textArea.setAttribute('rows', 5);
+textArea.setAttribute('cols', 50);
+textArea.classList.add('text-area');
+document.querySelector('body').appendChild(textArea);
+
+
+// create keyboard
+
+let keyboard = document.createElement('div');
+keyboard.classList.add('keyboard');
+document.querySelector('body').appendChild(keyboard);
+
+// create keys
+
+const keyboardArr = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace', 'Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', 'Delete', 'CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter', 'ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ArrowUp', 'ShiftRight', 'ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight'];
+const keysArr = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Del', 'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'Enter', 'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '▲', 'Shift', 'Ctrl', 'Win', 'Alt', ' ', 'Alt', '◄', '▼', '►', 'Ctrl'];
+
+function createKeys() {
+    let keys = '';
+    for (let i = 0; i < keyboardArr.length; i++) {
+        if (i == 14 || i == 29 || i == 42 || i == 55) {
+            keys += '<div class="clearfix"></div>';
+        }
+        keys += `<div class="key ${keyboardArr[i]}" data="${keyboardArr[i]}">`+String(keysArr[i])+'</div>'
+    }
+    document.querySelector('.keyboard').innerHTML = keys;
+}
+
+createKeys();
+
+// create description
+
+let descriptionText = document.createElement('p');
+descriptionText.classList.add('description');
+descriptionText.innerHTML = 'Клавиатура создана в операционной системе Windows';
+document.querySelector('body').appendChild(descriptionText);
+
+// create language
+
+let languageText = document.createElement('p');
+languageText.classList.add('language');
+languageText.innerHTML = 'Для переключения языка комбинация: левыe ctrl + shift';
+document.querySelector('body').appendChild(languageText);
+
+// animation for keys
+
+document.onkeydown = function (event) {
+    document.querySelector('.key[data="'+ event.code +'"]').classList.add('active');
+    textArea.append(event.key);
+}
+
+document.onkeyup = function (event) {
+    document.querySelector('.key[data="'+ event.code +'"]').classList.remove('active');
+}
+
+document.querySelectorAll('.key').forEach(function(element) {
+    element.addEventListener('mousedown',function(event) {
+        this.classList.add('active')
+        textArea.append('А вот это я не успел сделать.');
+    });
+
+    element.addEventListener('mouseup',function(event) {
+        this.classList.remove('active')
+    });
+});
+
+// Change language
+
+function runOnKeys(func, ...codes) {
+    let pressed = new Set();
+
+    document.addEventListener('keydown', function(event) {
+      pressed.add(event.code);
+
+      for (let code of codes) {
+        if (!pressed.has(code)) {
+          return;
+        }
+      }
+
+      pressed.clear();
+
+      func();
+    });
+
+    document.addEventListener('keyup', function(event) {
+      pressed.delete(event.code);
+    });
+
+  }
+
+  function rusKeys() {
+    const ruArr = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '\\', 'Del', 'CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter', 'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', '▲', 'Shift', 'Ctrl', 'Win', 'Alt', ' ', 'Alt', '◄', '▼', '►', 'Ctrl'];
+    let keys = '';
+    for (let i = 0; i < keyboardArr.length; i++) {
+        if (i == 14 || i == 29 || i == 42 || i == 55) {
+            keys += '<div class="clearfix"></div>';
+        }
+        keys += `<div class="key ${keyboardArr[i]}" data="${keyboardArr[i]}">`+String(ruArr[i])+'</div>'
+    }
+    document.querySelector('.keyboard').innerHTML = keys;
+}
+
+  runOnKeys(
+    () => rusKeys(),
+    "ShiftLeft",
+    "ControlLeft"
+  );
+
+// document.addEventListener('keydown', function(event) {
+//     if (event.code == 'ShiftLeft' && 'ControlLeft') {
+//       const ruArr = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '\\', 'Del', 'CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter', 'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', '▲', 'Shift', 'Ctrl', 'Win', 'Alt', ' ', 'Alt', '◄', '▼', '►', 'Ctrl'];
+//       let keys = '';
+
+//         for (let i = 0; i < keyboardArr.length; i++) {
+//             keys += `<div class="key ${keyboardArr[i]}" data="${keyboardArr[i]}">`+String(ruArr[i])+'</div>'
+//           }
+//           document.querySelector('.keyboard').innerHTML = keys;
+//     }
+//   });
+
+// document.onkeydown = function(event) {
+//     ruArr.push(event.key);
+//     console.log(ruArr)
+// }
