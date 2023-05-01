@@ -55,9 +55,6 @@ document.querySelector('body').appendChild(languageText);
 // animation for keys
 
 document.onkeydown = function (event) {
-    document.querySelectorAll('.key').forEach(function(element) {
-        element.classList.remove('active');
-    });
     document.querySelector('.key[data="'+ event.code +'"]').classList.add('active');
 }
 
@@ -66,11 +63,12 @@ document.onkeyup = function (event) {
 }
 
 document.querySelectorAll('.key').forEach(function(element) {
-    element.onclick = function(event) {
-        document.querySelectorAll('.key').forEach(function(element) {
-            element.classList.remove('active');
-        });
-        this.classList.add('active');
-    }
+    element.addEventListener('mousedown',function(event) {
+        this.classList.add('active')
+    });
+
+    element.addEventListener('mouseup',function(event) {
+        this.classList.remove('active')
+    });
 });
 
