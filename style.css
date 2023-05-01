@@ -49,9 +49,35 @@ body {
     transition: border-radius 0.3s, background-color 0.3s;
 }
 
+.AltLeft,
+.AltRight,
+.ArrowUp,
+.ArrowLeft,
+.ArrowDown,
+.ArrowRight,
+.Backspace,
+.CapsLock,
+.ControlLeft,
+.ControlRight,
+.Delete,
+.Enter,
+.ShiftLeft,
+.ShiftRight,
+.Tab,
+.MetaLeft {
+    font-weight: 600;
+    background: #222222;
+}
+
 .key:hover {
     color: black;
     background: yellow;
+}
+
+.active {
+    color: black;
+    background: yellow;
+    border-radius: 20px;
 }
 
 .clearfix {
@@ -79,26 +105,6 @@ body {
 
 .Space {
     width: 330px;
-}
-
-.AltLeft,
-.AltRight,
-.ArrowUp,
-.ArrowLeft,
-.ArrowDown,
-.ArrowRight,
-.Backspace,
-.CapsLock,
-.ControlLeft,
-.ControlRight,
-.Delete,
-.Enter,
-.ShiftLeft,
-.ShiftRight,
-.Tab,
-.MetaLeft {
-    font-weight: 600;
-    background-color: #222222;
 }
 
 .description,

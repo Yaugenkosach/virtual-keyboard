@@ -31,7 +31,7 @@ function createKeys() {
         if (i == 14 || i == 29 || i == 42 || i == 55) {
             keys += '<div class="clearfix"></div>';
         }
-        keys += `<div class="key ${keyboardArr[i]}">`+String(keysArr[i])+'</div>'
+        keys += `<div class="key ${keyboardArr[i]}" data="${keyboardArr[i]}">`+String(keysArr[i])+'</div>'
     }
     document.querySelector('.keyboard').innerHTML = keys;
 }
@@ -51,3 +51,26 @@ let languageText = document.createElement('p');
 languageText.classList.add('language');
 languageText.innerHTML = 'Для переключения языка комбинация: левыe ctrl + shift';
 document.querySelector('body').appendChild(languageText);
+
+// animation for keys
+
+document.onkeydown = function (event) {
+    document.querySelectorAll('.key').forEach(function(element) {
+        element.classList.remove('active');
+    });
+    document.querySelector('.key[data="'+ event.code +'"]').classList.add('active');
+}
+
+document.onkeyup = function (event) {
+    document.querySelector('.key[data="'+ event.code +'"]').classList.remove('active');
+}
+
+document.querySelectorAll('.key').forEach(function(element) {
+    element.onclick = function(event) {
+        document.querySelectorAll('.key').forEach(function(element) {
+            element.classList.remove('active');
+        });
+        this.classList.add('active');
+    }
+});
+
