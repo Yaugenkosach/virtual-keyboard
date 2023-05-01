@@ -56,6 +56,7 @@ document.querySelector('body').appendChild(languageText);
 
 document.onkeydown = function (event) {
     document.querySelector('.key[data="'+ event.code +'"]').classList.add('active');
+    textArea.append(event.key);
 }
 
 document.onkeyup = function (event) {
@@ -65,6 +66,7 @@ document.onkeyup = function (event) {
 document.querySelectorAll('.key').forEach(function(element) {
     element.addEventListener('mousedown',function(event) {
         this.classList.add('active')
+        textArea.append('А вот это я не успел сделать.');
     });
 
     element.addEventListener('mouseup',function(event) {
@@ -72,3 +74,62 @@ document.querySelectorAll('.key').forEach(function(element) {
     });
 });
 
+// Change language
+
+function runOnKeys(func, ...codes) {
+    let pressed = new Set();
+
+    document.addEventListener('keydown', function(event) {
+      pressed.add(event.code);
+
+      for (let code of codes) {
+        if (!pressed.has(code)) {
+          return;
+        }
+      }
+
+      pressed.clear();
+
+      func();
+    });
+
+    document.addEventListener('keyup', function(event) {
+      pressed.delete(event.code);
+    });
+
+  }
+
+  function rusKeys() {
+    const ruArr = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '\\', 'Del', 'CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter', 'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', '▲', 'Shift', 'Ctrl', 'Win', 'Alt', ' ', 'Alt', '◄', '▼', '►', 'Ctrl'];
+    let keys = '';
+    for (let i = 0; i < keyboardArr.length; i++) {
+        if (i == 14 || i == 29 || i == 42 || i == 55) {
+            keys += '<div class="clearfix"></div>';
+        }
+        keys += `<div class="key ${keyboardArr[i]}" data="${keyboardArr[i]}">`+String(ruArr[i])+'</div>'
+    }
+    document.querySelector('.keyboard').innerHTML = keys;
+}
+
+  runOnKeys(
+    () => rusKeys(),
+    "ShiftLeft",
+    "ControlLeft"
+  );
+
+// document.addEventListener('keydown', function(event) {
+//     if (event.code == 'ShiftLeft' && 'ControlLeft') {
+//       const ruArr = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '\\', 'Del', 'CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter', 'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', '▲', 'Shift', 'Ctrl', 'Win', 'Alt', ' ', 'Alt', '◄', '▼', '►', 'Ctrl'];
+//       let keys = '';
+
+//         for (let i = 0; i < keyboardArr.length; i++) {
+//             keys += `<div class="key ${keyboardArr[i]}" data="${keyboardArr[i]}">`+String(ruArr[i])+'</div>'
+//           }
+//           document.querySelector('.keyboard').innerHTML = keys;
+//     }
+//   });
+
+// document.onkeydown = function(event) {
+//     ruArr.push(event.key);
+//     console.log(ruArr)
+// }
