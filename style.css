@@ -49,6 +49,11 @@ body {
     transition: border-radius 0.3s, background-color 0.3s;
 }
 
+.key:hover {
+    color: black;
+    background: yellow;
+}
+
 .clearfix {
     clear: both;
 }
